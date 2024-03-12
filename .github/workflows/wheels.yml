@@ -87,7 +87,7 @@ jobs:
           tar xf *.tar.gz
           
       - name: Install cibuildwheel
-        run: python -m pip install cibuildwheel==2.9.0
+        run: python -m pip install cibuildwheel
 
       - name: Build wheels
         run: |
