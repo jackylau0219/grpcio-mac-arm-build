@@ -68,7 +68,8 @@ jobs:
     strategy:
       matrix:
         os: [ "macOS-12" ]
-        python_build_version: [ "cp38", "cp39", "cp310" ]
+        # python_build_version: [ "cp38", "cp39", "cp310", "cp311" ]
+        python_build_version: [ "cp38", "cp39" ]
         package: [ "grpcio", "grpcio-tools" ]
 
     needs: [check_release]
