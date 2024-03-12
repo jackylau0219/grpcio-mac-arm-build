@@ -45,14 +45,10 @@ jobs:
       - name: Check latest available grpcio release
         id: grpcio_version
         run: |
-          PIP_VERSION=$(pip -V)
-          PYTHON_VERSION=$(python -V)
-          echo "current pip version: $PIP_VERSION"
-          echo "current python version: $PYTHON_VERSION"
-          PIP3_VERSION=$(pip3 -V)
-          PYTHON3_VERSION=$(python3 -V)
-          echo "current pip3 version: $PIP3_VERSION"
-          echo "current python3 version: $PYTHON3_VERSION"
+          echo "current pip version: $(pip -V)"
+          echo "current python version: $(python -V)"
+          echo "current pip3 version: $(pip3 -V)"
+          echo "current python3 version: $(python3 -V)"
           GRPCIO_LATEST_VERSION=$(pip3 index versions --no-binary grpcio grpcio | grep grpcio | sed -E 's/grpcio \(([0-9.]+)\)/\1/')
           echo "Latest grpcio version on PyPI: $GRPCIO_LATEST_VERSION"
           echo "grpcio_current_version=$GRPCIO_LATEST_VERSION" >> $GITHUB_OUTPUT
@@ -83,14 +79,10 @@ jobs:
       
       - name: Download latest ${{ matrix.package }} stable tarball
         run: |
-          PIP_VERSION=$(pip -V)
-          PYTHON_VERSION=$(python -V)
-          echo "current pip version: $PIP_VERSION"
-          echo "current python version: $PYTHON_VERSION"
-          PIP3_VERSION=$(pip3 -V)
-          PYTHON3_VERSION=$(python3 -V)
-          echo "current pip3 version: $PIP3_VERSION"
-          echo "current python3 version: $PYTHON3_VERSION"
+          echo "current pip version: $(pip -V)"
+          echo "current python version: $(python -V)"
+          echo "current pip3 version: $(pip3 -V)"
+          echo "current python3 version: $(python3 -V)"
           pip download --no-binary ${{ matrix.package }} ${{ matrix.package }}==${{ needs.check_release.outputs.latest_version }}
           tar xf *.tar.gz
           
@@ -100,6 +92,10 @@ jobs:
       - name: Build wheels
         run: |
           cd ${{ matrix.package }}-*/
+          echo "current pip version: $(pip -V)"
+          echo "current python version: $(python -V)"
+          echo "current pip3 version: $(pip3 -V)"
+          echo "current python3 version: $(python3 -V)"
           python -m cibuildwheel --output-dir ../wheelhouse
         env:
           CIBW_ARCHS_MACOS: "arm64"
