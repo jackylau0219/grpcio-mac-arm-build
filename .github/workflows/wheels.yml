@@ -69,8 +69,9 @@ jobs:
       matrix:
         os: [ "macOS-12" ]
         # python_build_version: [ "cp38", "cp39", "cp310", "cp311" ]
-        python_build_version: [ "cp38", "cp39" ]
-        package: [ "grpcio", "grpcio-tools" ]
+        # package: [ "grpcio", "grpcio-tools" ]
+        python_build_version: [ "cp38" ]
+        package: [ "grpcio" ]
 
     needs: [check_release]
     if: needs.check_release.outputs.should_build == '1'
